@@ -1,32 +1,8 @@
 #!/usr/bin/make -f
 
 export LC_ALL=C.UTF-8
-PY3VERS=$(shell py3versions -vr)
 
 %:
-	dh $@ --with python2,python3
-
-build-python%:
-	python$* setup.py build
-
-test-python%:
-	python$* setup.py test -vv
-
-install-python%:
-	python$* setup.py install --root=$(CURDIR)/debian/tmp --install-layout=deb
-
-override_dh_auto_build: $(PY3VERS:%=build-python%)
-	dh_auto_build
-
-override_dh_auto_test: $(PY3VERS:%=test-python%)
-	dh_auto_test
-
-override_dh_auto_install: $(PY3VERS:%=install-python%)
-	dh_auto_install
-
-override_dh_install:
-	dh_install "debian/tmp/usr/lib/python2*" -p python-paramiko
-	dh_install "debian/tmp/usr/lib/python3*" -p python3-paramiko
-	dh_install
+	dh $@ --with python2
 
 override_dh_installdocs:
