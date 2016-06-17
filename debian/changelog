@@ -1,7 +1,6 @@
 paramiko (1.16.0-2~precise0+exo1) precise; urgency=medium
 
   * Backport for Precise.
-    + Drop dependency on python-ecdsa.
     + Don't use dh-python for build.
     + Don't install documentation.
     + Don't build for Python 3 (pyasn1 not available).
